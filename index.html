@@ -1,176 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tabango Public Library</title>
 
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-
-  
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-
-            background: url("/Users/Cristine Joy/Downloads/5.jpg") no-repeat center center fixed;
-            background-size: cover;
+            font-family: 'Poppins', sans-serif;
         }
 
-  
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            z-index: 1;
-        }
-
-       
-        .container {
-            position: relative;
-            z-index: 3;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        /* FULL BACKGROUND IMAGE */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
             height: 100vh;
-            padding: 0 60px;
-            color: white;
+            background: url("./image.jpg") no-repeat center center/cover;
+            filter: brightness(55%);
+            z-index: -2;
         }
 
-        /* ===== LEFT SIDE LOGO + TITLE ===== */
-        .left {
-            width: 45%;
+        /* Glow */
+        .glow {
+            animation: glow 4s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+            to   { text-shadow: 0 0 20px rgba(255,255,255,0.9); }
         }
 
-        .left img {
-            width: 320px;
-            margin-bottom: 20px;
+        /* Floating */
+        .float-up {
+            animation: floatUp 3s ease-in-out infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
 
-        .title {
-            font-size: 60px;
-            font-weight: bold;
-            line-height: 1.1;
-            letter-spacing: 5px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        /* Fade In */
+        .fade-in { 
+            animation: fadeIn 1.8s ease forwards; 
+            opacity: 0; 
         }
-
-        /* ===== LOGIN CARD ===== */
-        .card {
-            width: 300px;
-            padding: 30px 30px 40px 30px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-            color: black;
-            text-align: center;
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
-
-        .card h2 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: darkgreen;
-            font-size: 28px;
-        }
-   .btn-login:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5);
-      background: linear-gradient(135deg, #ff5722, #ff9800);
-    }
-
-        .input-box {
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        .input-box input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background: darkgreen;
-            color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    background: forestgreen;
-    color: white;
-    font-size: 14px;
-}
-        .btn:hover {
-            background: #024d02;
-        }
-
-        .signup {
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .signup a {
-            color: darkred;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
     </style>
 </head>
 
-<body>
+<body class="overflow-hidden">
 
-    <!-- Overlay Layers -->
-    <div class="overlay"></div>
-    <div class="diagonal"></div>
+    <!-- BACKGROUND IMAGE -->
+    <div class="bg-image"></div>
 
-    <!-- Main Content -->
-    <div class="container">
+    <!-- MAIN CONTENT -->
+    <div class="relative z-10 flex justify-between items-center h-screen px-20 text-white fade-in">
 
         <!-- LEFT SIDE -->
-        <div class="left">
-            <img src="/Users/Cristine Joy/Downloads/logo.png" alt="Municipality Logo">
-            <div class="title">
+        <div class="w-1/2 space-y-6">
+            <img src="./image.jpg" class="w-72 drop-shadow-2xl float-up" />
+
+            <div class="text-6xl font-extrabold tracking-wide glow leading-tight">
                 TABANGO PUBLIC<br>LIBRARY
             </div>
+
+            <div class="text-xl font-light mt-4 animate-pulse">
+                Empowering the community through knowledge — Borrow, Learn, Discover.
+            </div>
         </div>
-        <footer class="footer">
-    © 2025 Smart Library Solution — All Rights Reserved
-</footer>
 
         <!-- LOGIN CARD -->
-        <div class="card">
-            <h2>Welcome</h2>
+        <div class="w-96 p-10 rounded-2xl backdrop-blur-xl bg-white/10 border border-white/30 shadow-2xl text-center float-up">
+            <h2 class="text-3xl font-semibold mb-6 text-green-200">Welcome</h2>
 
-            <div class="input-box">
-                <input type="text" placeholder="Username">
-            </div>
-
-            <div class="input-box">
-                <input type="password" placeholder="Password">
-            </div>
-
-            <button class="btn">Login</button>
-
-            <div class="signup">
-                Don't have an account? <a href="#">Sign Up</a>
-            </div>
+            <a href="https://smartlibrarysolution.zohocreatorportal.com/">
+                <button class="w-full py-4 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-400 hover:to-green-600 text-white font-bold rounded-xl shadow-xl transition-all duration-300 hover:scale-105">
+                    Proceed to Login
+                </button>
+            </a>
         </div>
-
     </div>
+
+    <!-- FOOTER -->
+    <footer class="fixed bottom-0 left-0 w-full text-center py-3 bg-black/60 backdrop-blur-md text-white text-sm tracking-wide">
+        © 2025 Smart Library Solution — All Rights Reserved
+    </footer>
 
 </body>
 </html>
